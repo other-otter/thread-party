@@ -15,7 +15,7 @@
 
 (defun default-theme (the-message thread-number)
     (let ((the-value (eval the-message)))
-	 (log:info "~%~t[thread:~6<~A~;~>]~t~A~%" thread-number the-value)))
+        (log:info "~%~t[thread:~6<~A~;~>]~t~A~%" thread-number the-value)))
 
 (set-theme #'default-theme)
 
@@ -34,7 +34,7 @@
 (defun close-party ()
     (progn
         (mapcar (lambda (a) (bordeaux-threads:destroy-thread a)) *party-list*)
-        (setf *party-list* (remove-if (lambda (var) (equal var nil)) *party-list*))))
+        (setf *party-list* nil)))
 
 (defun list-thread ()
     (bordeaux-threads:all-threads))
