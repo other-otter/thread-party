@@ -15,7 +15,7 @@
 
 (defun default-theme (the-message thread-number)
     (let ((the-value (eval the-message)))
-	 (log:info "[~6<~A~>]:~t~A" thread-number the-value)))
+	 (log:info "[~6<~A~>]:~t~A~%" thread-number the-value)))
 
 (set-theme #'default-theme)
 
