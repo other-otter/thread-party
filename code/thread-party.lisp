@@ -1,6 +1,6 @@
 (in-package :thread-party)
 
-(setf *party-queue* (lparallel.queue:make-queue))
+(defparameter *party-queue* (lparallel.queue:make-queue))
 
 (defvar *party-list* '())
 
