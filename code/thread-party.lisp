@@ -5,17 +5,17 @@
 (defvar *party-list* '())
 
 (defun make-plan (the-number)
-	(let ((core-number (cpus:get-number-of-processors)))
-		(if (<= the-number 0)
-			(setf *party-plan* 2)
-			(setf *party-plan* (floor (* the-number core-number))))))
+    (let ((core-number (cpus:get-number-of-processors)))
+        (if (<= the-number 0)
+            (setf *party-plan* 2)
+            (setf *party-plan* (floor (* the-number core-number))))))
 
 (defun set-theme (the-function-symbol)
     (setf *party-theme* the-function-symbol))
 
 (defun default-theme (the-message thread-number)
     (let ((the-value (eval the-message)))
-	 (log:info "~%~t[~6<~A~>]:~t~A~%" thread-number the-value)))
+	 (log:info "~%~t[thread:~6<~A~;~>]~t~A~%" thread-number the-value)))
 
 (set-theme #'default-theme)
 
