@@ -48,6 +48,7 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ## party-theme
 ```common-lisp
 ;define your function handle the message in thread-pool
+;all the thread is running this function
 ```
 ```common-lisp
 ;;theme-example-list
