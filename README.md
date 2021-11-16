@@ -32,6 +32,7 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ;or
 
 (thread-party:main)
+
 ```
 
 ## have-party
@@ -48,7 +49,7 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ## party-theme
 ```common-lisp
 ;define your function handle the message in thread-pool
-;all the thread is running this function
+;all threads in pool is running this function
 ```
 ```common-lisp
 ;;theme-example-list
@@ -107,7 +108,17 @@ thread-party:*party-list*
 
 ## usage
 ```common-lisp
-;
+;;parameter
+;thread-party::*party-queue*
+;thread-party::*party-list*
+;;function
+;thread-party::make-plan core-multiple
+;thread-party::set-theme function-symbol
+;thread-party::send-message message-form
+;thread-party::start-party
+;thread-party::close-party
+;thread-party::list-thread
+;thread-party::main
 ```
 
 ## more
