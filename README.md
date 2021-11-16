@@ -48,14 +48,39 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ## party-theme
 ```common-lisp
 ;define your function handle the message in thread-pool
-(defun the-list-length (the-message thread-number)
+
+;;theme-example-list
+(defun list-length (the-message thread-number)
     (let ((the-value (length the-message))) ;the length of message
         (log:info "~%<~A>~t~A~%" thread-number the-value)))
         
-(thread-party:set-theme #'the-list-length)
+(thread-party:set-theme #'list-length)
 
 (thread-party:send-message '(* 1 2))
 
+;;theme-example-string
+(defun reverse-string (the-message thread-number)
+    (log:info "~%~A~t~A~%" (reverse the-message) thread-number))
+  
+(thread-party:set-theme #'reverse-string)
+
+(thread-party:send-message "hi")
+(thread-party:send-message "there")
+
+;;theme-example-number
+(setf message-list '(100 200 300))
+(setf value-list nil)
+
+(defun add-hundred (the-message thread-number)
+    (push (cons thread-number (+ 100 the-message)) value-list))
+
+(thread-party:set-theme #'add-hundred)
+
+(mapcar (lambda (a) (thread-party:send-message a)) message-list)
+
+value-list
+
+;;define your more complex single function
 ```
 
 ## thread-list
@@ -73,6 +98,11 @@ thread-party:*party-list*
 ## close-party
 ```common-lisp
 (thread-party:close-party)
+```
+
+## usage
+```common-lisp
+;
 ```
 
 ## more
