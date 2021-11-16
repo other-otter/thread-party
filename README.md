@@ -42,7 +42,7 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ;define your function handle the message in thread-pool
 (defun the-list-length (the-message thread-number)
     (let ((the-value (length the-message)))
-        (log:info "~%~A:~t~A~%" thread-number the-value)))
+        (log:info "~%<~A>~t~A~%" thread-number the-value)))
         
 (thread-party:set-theme #'the-list-length)
 
