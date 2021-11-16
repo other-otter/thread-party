@@ -32,7 +32,9 @@
             *party-list*))))
 
 (defun close-party ()
-    (mapcar (lambda (a) (bordeaux-threads:destroy-thread a)) *party-list*))
+    (progn
+        (mapcar (lambda (a) (bordeaux-threads:destroy-thread a)) *party-list*)
+        (setf *party-list* (remove-if (lambda (var) (equal var nil)) *party-list*))))
 
 (defun list-thread ()
     (bordeaux-threads:all-threads))
