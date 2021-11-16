@@ -5,4 +5,4 @@
 (thread-party::start-party)
 
 (loop for i from 1 to 100 do 
-    (lparallel.queue:push-queue i *party-queue*))
+    (lparallel.queue:push-queue i thread-party::*party-queue*))
