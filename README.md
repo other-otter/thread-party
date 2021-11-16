@@ -62,6 +62,8 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ;show the threads in thread-pool
 thread-party:*party-list*
 
+;check thread count
+(equal (length thread-party:*party-list* thread-party:*party-plan*))
 ```
 
 ## close-party
