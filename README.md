@@ -26,14 +26,18 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 
 ## start-party
 ```common-lisp
-(thread-party:start-party) ;create the thread pool
+;create the thread pool
+(thread-party:start-party) 
 
+;or
+
+(thread-party:main)
 ```
 
 ## have-party
 ```common-lisp
 ;send your message to the thread pool
-(thread-party:send-message '(+ 1 2))
+(thread-party:send-message '(* 1 2))
 
 ```
 
@@ -41,12 +45,12 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ```common-lisp
 ;define your function handle the message in thread-pool
 (defun the-list-length (the-message thread-number)
-    (let ((the-value (length the-message)))
+    (let ((the-value (length the-message))) ;the length of message
         (log:info "~%<~A>~t~A~%" thread-number the-value)))
         
 (thread-party:set-theme #'the-list-length)
 
-(thread-party:send-message '(+ 1 2))
+(thread-party:send-message '(* 1 2))
 
 ```
 
