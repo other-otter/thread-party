@@ -1,6 +1,6 @@
 (ql:quickload :thread-party)
 
-(thread-party::make-plan 2)
+(setf thread-party::*party-plan* 6)
 
 (thread-party::start-party)
 
