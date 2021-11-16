@@ -56,6 +56,12 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 (thread-party:list-thread)
 
 ;show the threads in thread-pool
-*party-list*
+thread-party:*party-list*
 
 ```
+
+## close-party
+```common-lisp
+(thread-party:close-party)
+```
+
