@@ -62,7 +62,7 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ```common-lisp
 ;;theme-example-string
 (defun reverse-string (the-message thread-number)
-    (log:info "~%~A~t~A~%" (reverse the-message) thread-number))
+    (log:info "~%~A~t~A~%" thread-number (reverse the-message)))
   
 (thread-party:set-theme #'reverse-string)
 
