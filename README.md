@@ -48,7 +48,8 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ## party-theme
 ```common-lisp
 ;define your function handle the message in thread-pool
-
+```
+```common-lisp
 ;;theme-example-list
 (defun list-length (the-message thread-number)
     (let ((the-value (length the-message))) ;the length of message
@@ -57,7 +58,8 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 (thread-party:set-theme #'list-length)
 
 (thread-party:send-message '(* 1 2))
-
+```
+```common-lisp
 ;;theme-example-string
 (defun reverse-string (the-message thread-number)
     (log:info "~%~A~t~A~%" (reverse the-message) thread-number))
@@ -66,7 +68,8 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 
 (thread-party:send-message "hi")
 (thread-party:send-message "there")
-
+```
+```common-lisp
 ;;theme-example-number
 (setf message-list '(100 200 300))
 (setf value-list nil)
@@ -79,7 +82,8 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 (mapcar (lambda (a) (thread-party:send-message a)) message-list)
 
 value-list
-
+```
+```common-lisp
 ;;define your more complex single function
 ```
 
