@@ -1,5 +1,5 @@
 # thread-party
-```common-lisp
+```text
 easy thread pool with package bordeaux-threads and lparallel.queue, has fashionable symbol name
 
 ```
@@ -63,7 +63,7 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 thread-party:*party-list*
 
 ;check thread count
-(equal (length thread-party:*party-list* thread-party:*party-plan*))
+(equal (length thread-party:*party-list*) thread-party:*party-plan*)
 ```
 
 ## close-party
