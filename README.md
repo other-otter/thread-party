@@ -75,3 +75,11 @@ thread-party:*party-list*
 (thread-party:close-party)
 ```
 
+## more
+```common-lisp
+;https://lparallel.org/api/queues/
+;https://sionescu.github.io/bordeaux-threads/
+;https://github.com/7max/log4cl
+;https://github.com/muyinliu/cl-cpus
+;https://lispcookbook.github.io/cl-cookbook/
+```
