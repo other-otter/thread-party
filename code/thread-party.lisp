@@ -35,3 +35,6 @@
 
 (defun list-thread ()
     (bordeaux-threads:all-threads))
+
+(defun main ()
+    (start-party))
