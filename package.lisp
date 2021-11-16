@@ -13,4 +13,4 @@
              start-party
              close-party
              list-thread
-             main ))
+             main))
