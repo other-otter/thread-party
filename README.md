@@ -37,7 +37,11 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ## have-party
 ```common-lisp
 ;send your message to the thread pool
+;the default theme will evaluate the expression in the message
 (thread-party:send-message '(* 1 2))
+
+(let ((a 1))
+    (thread-party:send-message `(* ,a 2)))
 
 ```
 
