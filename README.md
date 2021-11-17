@@ -14,11 +14,11 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 
 ## party-plan
 ```common-lisp
-;first, plan the number of threads in the thread pool
+;plan the number of threads in the thread pool
 
 (setf thread-party:*party-plan* 6) ;threads count 6
 
-;or
+;or according to the multiple of cpu core count
 
 (thread-party:make-plan 2) ;thread-count = 2 * your-cpu-core-number 
 
@@ -29,7 +29,7 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ;create the thread pool
 (thread-party:start-party) 
 
-;or
+;or use main function
 
 (thread-party:main)
 
@@ -39,20 +39,31 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ```common-lisp
 ;send your message to the thread pool
 ;the default theme will evaluate the expression in the message
+
+;;numerical value
 (thread-party:send-message '(* 1 2))
 
+;;local value
 (let ((a 1))
     (thread-party:send-message `(* ,a 2)))
 
+;;use in function
+(defun the-multiplication (a b)
+    (thread-party:send-message `(* ,a ,b)))
+    
+(the-multiplication 1 2)
 ```
 
 ## party-theme
 ```common-lisp
-;define your function handle the message in thread-pool
+;default-theme will eval the form in the message
+;(thread-party:set-theme #'thread-party:default-theme)
+;you can define your function handle the message in thread-pool
 ;all threads in pool is running this function
+
 ```
 ```common-lisp
-;;theme-example-list
+;;theme-example-list-length
 (defun list-length (the-message thread-number)
     (let ((the-value (length the-message))) ;the length of message
         (log:info "~%<~A>~t~A~%" thread-number the-value)))
@@ -62,7 +73,7 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 (thread-party:send-message '(* 1 2))
 ```
 ```common-lisp
-;;theme-example-string
+;;theme-example-reverse-string
 (defun reverse-string (the-message thread-number)
     (log:info "~%~A~t~A~%" thread-number (reverse the-message)))
   
@@ -72,7 +83,7 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 (thread-party:send-message "there")
 ```
 ```common-lisp
-;;theme-example-number
+;;theme-example-number-addition
 (setf message-list '(100 200 300))
 (setf value-list nil)
 
