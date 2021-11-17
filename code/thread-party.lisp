@@ -24,12 +24,13 @@
 
 (defun start-party ()
     (loop for i from 1 to *party-plan* do 
-        (push 
-            (bordeaux-threads:make-thread (lambda () 
-                (loop 
-                    (let ((the-message (lparallel.queue:pop-queue *party-queue*)))
-                        (funcall *party-theme* the-message i)))))
-            *party-list*)))
+        (let ((i i))
+            (push 
+                (bordeaux-threads:make-thread (lambda () 
+                    (loop 
+                        (let ((the-message (lparallel.queue:pop-queue *party-queue*)))
+                            (funcall *party-theme* the-message i)))))
+                *party-list*))))
 
 (defun close-party ()
     (mapcar #'bordeaux-threads:destroy-thread *party-list*)
@@ -52,13 +53,14 @@
 
 (defun hold-party (party-symbol)
     (loop for i from 1 to (getf party-symbol :party-plan) do
-        (push 
-            (bordeaux-threads:make-thread 
-                (lambda () 
-                    (loop 
-                        (let ((the-message (lparallel.queue:pop-queue (getf party-symbol :party-queue))))
-                            (funcall (getf party-symbol :party-theme) the-message i)))))
-            (getf party-symbol :party-list))))
+        (let ((i i))
+            (push 
+                (bordeaux-threads:make-thread 
+                    (lambda () 
+                        (loop 
+                            (let ((the-message (lparallel.queue:pop-queue (getf party-symbol :party-queue))))
+                                (funcall (getf party-symbol :party-theme) the-message i)))))
+                (getf party-symbol :party-list)))))
 
 (defun sure-party (party-symbol party-theme)
     (setf (getf party-symbol :party-theme) party-theme))
