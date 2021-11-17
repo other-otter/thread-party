@@ -55,9 +55,9 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ## party-theme
 ```common-lisp
 ;default-theme will eval the form in the message
-;(thread-party:set-theme #'thread-party:default-theme)
 ;you can define your function handle the message in thread-pool
 ;all threads in pool is running this function
+
 ```
 ```common-lisp
 ;;theme-example-list-length
@@ -78,7 +78,7 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 (thread-party:set-theme #'reverse-string)
 
 (thread-party:send-message "hi")
-(thread-party:send-message "there")
+(thread-party:send-message "lisp")
 
 ```
 ```common-lisp
@@ -99,6 +99,45 @@ value-list
 ```
 ```common-lisp
 ;;define your more powerful function
+;;;for example a function to determine whether it is a prime number
+(defun a (b)
+  (if (<= b 1)
+      nil
+      (c b (1- b))))
+
+(defun c (d e)
+  (if (= e 1)
+      (progn (push d f)
+             (values d t))
+      (if (= 0 (mod d e))
+          nil
+          (c d (1- e)))))
+          
+;;;use-default-theme-example
+(thread-party:set-theme #'thread-party:default-theme)
+
+(setf f nil)
+
+(loop for i from 1 to 100 do
+    (thread-party:send-message `(a ,i)))
+
+(symbol-value 'f)
+
+;;;use-function-as-party-theme-example
+(defun a (b thread-number) ;redefine function #'a that take the parameter
+  (if (<= b 1)
+      nil
+      (c b (1- b))))
+
+(thread-party:set-theme #'a)
+
+(setf f nil)
+
+(loop for i from 1 to 100 do
+    (thread-party:send-message i))
+
+(symbol-value 'f)
+
 ```
 
 ## thread-list
