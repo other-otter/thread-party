@@ -13,4 +13,9 @@
              start-party
              close-party
              list-thread
-             main))
+             main
+             plan-party
+             hold-party
+             sure-party
+             take-party
+             shut-party))
