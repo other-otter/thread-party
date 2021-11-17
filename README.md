@@ -113,7 +113,7 @@ value-list
           nil
           (c d (1- e)))))
           
-;;;use-default-theme-example
+;;;default-theme-example
 (thread-party:set-theme #'thread-party:default-theme)
 
 (setf f nil)
@@ -123,7 +123,7 @@ value-list
 
 (symbol-value 'f)
 
-;;;use-function-as-party-theme-example
+;;;user-theme-example
 (defun a (b thread-number) ;redefine function #'a that take the parameter
   (if (<= b 1)
       nil
