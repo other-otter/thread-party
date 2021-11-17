@@ -32,7 +32,7 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 
 ```
 
-## have-party
+## take-party
 ```common-lisp
 ;send your message to the thread pool
 ;the default theme will evaluate the expression in the message
