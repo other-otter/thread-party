@@ -4,11 +4,6 @@
 
 (thread-party::start-party)
 
-(defun a (b)
-  (if (<= b 1)
-      nil
-      (c b (1- b))))
-
 (defun c (d e)
   (if (= e 1)
       (progn (push d f)
