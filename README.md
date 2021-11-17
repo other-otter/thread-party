@@ -172,6 +172,11 @@ thread-party:*party-list*
 ;thread-party::close-party
 ;thread-party::list-thread
 ;thread-party::main
+;plan-party party-symbol-quote
+;hold-party party-symbol
+;sure-party party-symbol party-theme
+;take-party party-symbol message
+;shut-party party-symbol 
 ```
 
 ## more
