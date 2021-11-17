@@ -33,7 +33,7 @@
 
 (defun close-party ()
     (mapcar #'bordeaux-threads:destroy-thread *party-list*)
-    (setf *party-list* nil)))
+    (setf *party-list* nil))
 
 (defun list-thread ()
     (bordeaux-threads:all-threads))
