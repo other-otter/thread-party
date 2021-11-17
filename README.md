@@ -15,11 +15,9 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ## party-plan
 ```common-lisp
 ;plan the number of threads in the thread pool
-
 (setf thread-party:*party-plan* 6) ;threads count 6
 
 ;or according to the multiple of cpu core count
-
 (thread-party:make-plan 2) ;thread-count = 2 * your-cpu-core-number 
 
 ```
@@ -30,7 +28,6 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 (thread-party:start-party) 
 
 ;or use main function
-
 (thread-party:main)
 
 ```
@@ -61,7 +58,6 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 ;(thread-party:set-theme #'thread-party:default-theme)
 ;you can define your function handle the message in thread-pool
 ;all threads in pool is running this function
-
 ```
 ```common-lisp
 ;;theme-example-list-length
@@ -72,6 +68,7 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 (thread-party:set-theme #'list-length)
 
 (thread-party:send-message '(* 1 2))
+
 ```
 ```common-lisp
 ;;theme-example-reverse-string
@@ -82,6 +79,7 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 
 (thread-party:send-message "hi")
 (thread-party:send-message "there")
+
 ```
 ```common-lisp
 ;;theme-example-number-addition
@@ -89,17 +87,18 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 (setf value-list nil)
 
 (defun add-hundred (the-message thread-number)
-    (push (cons thread-number (+ 100 the-message)) value-list))
+    (push (list :thread thread-number :message the-message :vaule (+ 100 the-message)) 
+          value-list))
 
 (thread-party:set-theme #'add-hundred)
 
 (mapcar (lambda (a) (thread-party:send-message a)) message-list)
 
 value-list
+
 ```
 ```common-lisp
 ;;define your more powerful function
-
 ```
 
 ## thread-list
@@ -112,6 +111,7 @@ thread-party:*party-list*
 
 ;check thread count
 (equal (length thread-party:*party-list*) thread-party:*party-plan*)
+
 ```
 
 ## close-party
