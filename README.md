@@ -52,6 +52,7 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
     (thread-party:send-message `(* ,a ,b)))
     
 (the-multiplication 1 2)
+
 ```
 
 ## party-theme
@@ -97,7 +98,8 @@ easy thread pool with package bordeaux-threads and lparallel.queue, has fashiona
 value-list
 ```
 ```common-lisp
-;;define your more complex single function
+;;define your more powerful function
+
 ```
 
 ## thread-list
@@ -115,6 +117,7 @@ thread-party:*party-list*
 ## close-party
 ```common-lisp
 (thread-party:close-party)
+
 ```
 
 ## usage
