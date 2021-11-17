@@ -23,13 +23,13 @@
     (lparallel.queue:push-queue the-message *party-queue*))
 
 (defun start-party ()
-    (loop for i from 1 to *party-plan* do (eval 
-        `(push 
+    (loop for i from 1 to *party-plan* do 
+        (push 
             (bordeaux-threads:make-thread (lambda () 
                 (loop 
                     (let ((the-message (lparallel.queue:pop-queue *party-queue*)))
-                        (funcall *party-theme* the-message ,i)))))
-            *party-list*))))
+                        (funcall *party-theme* the-message i)))))
+            *party-list*)))
 
 (defun close-party ()
     (mapcar #'bordeaux-threads:destroy-thread *party-list*)
