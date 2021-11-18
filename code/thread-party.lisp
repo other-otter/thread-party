@@ -13,7 +13,7 @@
 (defun set-theme (function-symbol-quote)
     (setf *party-theme* function-symbol-quote))
 ;the original name the-function-symbol is easy to confuse
-;so I changed to function-symbol-quote ;;is 'a not a
+;so I changed to function-symbol-quote 
 
 (defun default-theme (the-message thread-number)
     (let ((the-value (eval the-message)))
@@ -32,7 +32,8 @@
                     (lambda () 
                         (loop 
                             (let ((the-message (lparallel.queue:pop-queue *party-queue*)))
-                                (funcall *party-theme* the-message i)))))
+                                (funcall *party-theme* the-message i))))
+                    :name (format nil "[thread:~6<~A~;~>]" i))
                 *party-list*))))
 
 (defun close-party ()
