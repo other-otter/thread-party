@@ -159,6 +159,27 @@ thread-party:*party-list*
 
 ```
 
+## div-party
+```common-lisp
+;when you want to hold more than one party, you can use the next part
+(defun party-theme-listp (the-message thread-number)
+    (let ((the-value (listp the-message)))
+        (log:info "~%~A~t~A~t~A~%" thread-number the-message the-value)))
+
+(thread-party:plan-party 'fashion-list-party :party-plan 6 :party-theme #'party-theme-listp)
+
+(thread-party:hold-party fashion-list-party)
+
+(thread-party:take-party fashion-list-party `(nil))
+
+(thread-party:sure-party fashion-list-party #'thread-party:default-theme)
+
+(thread-party:take-party fashion-list-party `(nil))
+
+(thread-party:shut-party fashion-list-party)
+
+```
+
 ## usage
 ```common-lisp
 ;;parameter
@@ -175,7 +196,7 @@ thread-party:*party-list*
 ;thread-party::plan-party party-symbol-quote
 ;thread-party::hold-party party-symbol
 ;thread-party::sure-party party-symbol party-theme
-;thread-party::take-party party-symbol message
+;thread-party::take-party party-symbol message-form
 ;thread-party::shut-party party-symbol 
 ```
 
