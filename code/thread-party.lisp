@@ -10,9 +10,10 @@
             nil
             (setf *party-plan* (floor (* the-number core-number))))))
 
-;(defvar *party-theme* nil)
-(defun set-theme (the-function-symbol)
-    (setf *party-theme* the-function-symbol))
+(defun set-theme (function-symbol-quote)
+    (setf *party-theme* function-symbol-quote))
+;the original name the-function-symbol is easy to confuse
+;so I changed to function-symbol-quote ;;is 'a not a
 
 (defun default-theme (the-message thread-number)
     (let ((the-value (eval the-message)))
@@ -27,10 +28,11 @@
     (loop for i from 1 to *party-plan* do 
         (let ((i i))
             (push 
-                (bordeaux-threads:make-thread (lambda () 
-                    (loop 
-                        (let ((the-message (lparallel.queue:pop-queue *party-queue*)))
-                            (funcall *party-theme* the-message i)))))
+                (bordeaux-threads:make-thread 
+                    (lambda () 
+                        (loop 
+                            (let ((the-message (lparallel.queue:pop-queue *party-queue*)))
+                                (funcall *party-theme* the-message i)))))
                 *party-list*))))
 
 (defun close-party ()
