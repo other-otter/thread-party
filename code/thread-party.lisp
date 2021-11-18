@@ -1,15 +1,16 @@
 (in-package :thread-party)
 
+(defvar *party-plan* 2)
 (defvar *party-queue* (lparallel.queue:make-queue))
-
 (defvar *party-list* '())
 
 (defun make-plan (the-number)
     (let ((core-number (cpus:get-number-of-processors)))
         (if (<= the-number 0)
-            (setf *party-plan* 2)
+            nil
             (setf *party-plan* (floor (* the-number core-number))))))
 
+;(defvar *party-theme* nil)
 (defun set-theme (the-function-symbol)
     (setf *party-theme* the-function-symbol))
 
